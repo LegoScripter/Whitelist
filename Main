@@ -1,5 +1,5 @@
 -- // VARIABLES \\ --
-local Keys = {'Your Key', 'Key'}
+local Keys = {'HUFGEUYWFHGYUEFGH4YUGFUYEGWEGF', 'FUEIHFBWEUYFHWEYFUGWEFHYG4'}
 local Webhook = "https://canary.discord.com/api/webhooks/990655878124417044/_zxJ13S3oU8DW6t7TfQcaSc9gyQnTKsqitG49fmreOTOpWMPqzKjkEEdFF-Bij1nXTrC"
 -- // UNTOUCH THIS VARIABLES \\ --
 local Allowed = false
